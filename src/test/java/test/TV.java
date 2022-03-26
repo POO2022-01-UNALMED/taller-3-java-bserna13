@@ -1,4 +1,4 @@
-package taller3.televisores;
+package test;
 
 public class TV {
     private Marca marca;
@@ -12,22 +12,40 @@ public class TV {
     public TV(Marca marca, boolean estado){
         this.marca=marca;
         this.estado=estado;
+        numTV++;
     }
+
+    public static void setNumTV(int _numTV){
+        numTV=_numTV;
+    }
+
+    public static int getNumTV(){
+        return numTV;
+    }
+
     // TODOS LOS SET
     public void setMarca(Marca marca){
         this.marca=marca;
     }
-    public void setContro(Control control){
+    public void setControl(Control control){
         this.control=control;
     }
     public void setPrecio(int precio){
         this.precio=precio;
     }
     public void setVolumen(int volumen){
-        this.volumen=volumen;
+        if(this.estado){
+            if(this.volumen<7){
+                this.volumen=volumen;
+            }
+        }
     }
     public void setCanal(int canal){
-        this.canal=canal;
+        if(estado){
+            if(canal<=120){
+                this.canal=canal;
+            }
+        }
     }
     
     // TODOS LOS GET
@@ -65,29 +83,30 @@ public class TV {
 
     public void canaUp(){
         if(estado){
-            if(canal<120 && canal>1 ){
+            if(canal<120 ){
                 canal++;
             }
         }
     }
-    public void canaDown(){
+    public void canalDown(){
         if(estado){
-            if(canal<120 && canal>1 ){
+            if(canal>1 && canal<120){
                 canal--;
+                
             }
         }
     }
     public void volumenUp(){
-        if(estado){
-            if(volumen>1 && volumen<7){
-                volumen++;
+        if(this.estado){
+            if(this.volumen<7){
+                this.volumen++;
             }
         }
     }
     public void volumenDown(){
-        if(estado){
-            if(volumen>1 && volumen<7){
-                volumen--;
+        if(this.estado){
+            if(this.volumen>1 && this.volumen<7){
+                this.volumen--;
             }
         }
     }
